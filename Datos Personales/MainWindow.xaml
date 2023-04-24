@@ -9,9 +9,10 @@
 
     <Window.Resources>
 
-
+        <!--// INICIO DEL ESTILO Y PLANTILLA DEL COMBOBOX //-->
         <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
 
+            <!--// AQUI VIENE LA FORMA DEL COMBOBOX //-->
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -22,23 +23,26 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2" BorderBrush="LightGray" BorderThickness="1" />
+                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2" BorderBrush="#ABADB3" BorderThickness="1" />
 
                 <Border Grid.Column="0"  CornerRadius="2,0,0,2" Margin="1" Background="White" BorderThickness="0,0,1,0" />
 
-                <Path x:Name="Arrow" Grid.Column="1" HorizontalAlignment="Center" Stroke="Gray" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                <Path x:Name="Arrow" Grid.Column="1" HorizontalAlignment="Center" Fill="WhiteSmoke" Stroke="#ABADB3" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
 
             </Grid>
+            <!--// FIN DE LA FORMA DEL COMBOBOX //-->
 
         </ControlTemplate>
 
+        <!--// PARA EL TEXTO DEL COMBOBOX ES NECESARIO //-->
         <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
 
-            <Border x:Name="PART_ContentHost" Focusable="False" Background="Black" />
+            <Border x:Name="PART_ContentHost" Focusable="True" Background="Black" Width="318"/>
 
         </ControlTemplate>
 
 
+        <!--// AQUI YA EMPIEZA EL ESTILO DEL COMBOBOX //-->
         <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
 
             <Setter Property="Template">
@@ -51,15 +55,17 @@
 
                             <ToggleButton Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="false"  IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"></ToggleButton>
 
-                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <!--// NECESARIO PARA QUE APAREZCA EL TEXTO DEL ITEM SELECCIONADO y COMO APARECE//-->
+                            <ContentPresenter Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Name="ContentSite" IsHitTestVisible="True" Margin="5,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" />
 
-                            <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="3,3,23,3" Focusable="True"  Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,3,23,3" Focusable="True"  Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
 
-                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                            <!--// ASI ES COMO SE MUESTRA AL PULSAR //-->
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Scroll">
 
                                 <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
 
-                                    <Border x:Name="DropDownBorder"  Background="white" BorderThickness="1"/>
+                                    <Border x:Name="DropDownBorder"  Background="{TemplateBinding Background }" BorderThickness="1"/>
 
                                     <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
 
@@ -80,13 +86,13 @@
             </Setter>
 
         </Style>
+        <!--// FIN DEL ESTILO DEL COMBOBOX //-->
+        
+        <!--// FIN DEL ESTILO Y PLANTILLA DEL COMBOBOX //-->
 
 
 
-
-
-
-
+        <!--// ESTILOS APARTE //-->
         <Style TargetType="Button">
 
             <Setter Property="Padding" Value="8,6,8,8"></Setter>
@@ -102,7 +108,6 @@
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
             <Setter Property="Padding" Value="10,10,10,0"></Setter>
             <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
-            <Setter Property="Foreground" Value="BLACK"></Setter>
 
         </Style>
 
@@ -233,6 +238,8 @@
                 <ComboBox Margin="15">
 
                     <ComboBoxItem IsSelected="True">Seleccionar</ComboBoxItem>
+                    <ComboBoxItem>A</ComboBoxItem>
+                    <ComboBoxItem>B</ComboBoxItem>
 
                 </ComboBox>
 
