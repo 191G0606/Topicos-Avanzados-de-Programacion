@@ -9,12 +9,91 @@
 
     <Window.Resources>
 
+
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition />
+
+                    <ColumnDefinition Width="20" />
+
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2" BorderBrush="LightGray" BorderThickness="1" />
+
+                <Border Grid.Column="0"  CornerRadius="2,0,0,2" Margin="1" Background="White" BorderThickness="0,0,1,0" />
+
+                <Path x:Name="Arrow" Grid.Column="1" HorizontalAlignment="Center" Stroke="Gray" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+
+            </Grid>
+
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+
+            <Border x:Name="PART_ContentHost" Focusable="False" Background="Black" />
+
+        </ControlTemplate>
+
+
+        <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="ComboBox">
+
+                        <Grid>
+
+                            <ToggleButton Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="false"  IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"></ToggleButton>
+
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                            <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="3,3,23,3" Focusable="True"  Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+
+                                    <Border x:Name="DropDownBorder"  Background="white" BorderThickness="1"/>
+
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+
+                                    </ScrollViewer>
+
+                                </Grid>
+
+                            </Popup>
+
+                        </Grid>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+
+
+
+
+
         <Style TargetType="Button">
 
             <Setter Property="Padding" Value="8,6,8,8"></Setter>
             <Setter Property="Height" Value="31"></Setter>
             <Setter Property="Margin" Value="0,0,5,0"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="black"></Setter>
 
         </Style>
 
@@ -23,6 +102,7 @@
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
             <Setter Property="Padding" Value="10,10,10,0"></Setter>
             <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
+            <Setter Property="Foreground" Value="BLACK"></Setter>
 
         </Style>
 
@@ -40,6 +120,13 @@
         </Style>
 
     </Window.Resources>
+
+
+
+
+
+
+    <!-- AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII-->
 
     <DockPanel>
 
@@ -76,25 +163,25 @@
             </Grid.ColumnDefinitions>
 
             <!--// Columna 1 //-->
-            <Border>
+            <Border Background="WhiteSmoke">
 
                 <TextBlock Text="Nombre(s)"></TextBlock>
 
             </Border>
 
-            <Border Grid.Row="1">
+            <Border Grid.Row="1" Background="WhiteSmoke">
 
                 <TextBlock Text="Apellidos"></TextBlock>
 
             </Border>
 
-            <Border Grid.Row="2">
+            <Border Grid.Row="2" Background="WhiteSmoke">
 
                 <TextBlock Text="Email"></TextBlock>
 
             </Border>
 
-            <Border Grid.Row="3">
+            <Border Grid.Row="3" Background="WhiteSmoke">
 
                 <StackPanel>
 
@@ -110,7 +197,7 @@
 
             </Border>
 
-            <Border Grid.Row="4">
+            <Border Grid.Row="4" Background="WhiteSmoke">
 
                 <TextBlock Text="Genero"></TextBlock>
 
@@ -137,18 +224,22 @@
 
             <Border Grid.Column="1" Grid.Row="3">
 
-                <TextBox Margin="15"></TextBox>
+                <RichTextBox Margin="15"></RichTextBox>
 
             </Border>
 
             <Border Grid.Column="1" Grid.Row="4">
 
-                <ComboBox Margin="15" Background="Transparent"></ComboBox>
+                <ComboBox Margin="15">
+
+                    <ComboBoxItem IsSelected="True">Seleccionar</ComboBoxItem>
+
+                </ComboBox>
 
             </Border>
 
         </Grid>
 
     </DockPanel>
-    
+
 </Window>
