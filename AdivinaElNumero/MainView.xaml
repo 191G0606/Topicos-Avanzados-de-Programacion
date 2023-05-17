@@ -1,0 +1,114 @@
+﻿<Window x:Class="AdivinaElNumero.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdivinaElNumero"
+         mc:Ignorable="d"
+        Title="Adivina el numero" 
+        Height="540" Width="700"
+        AllowsTransparency="True" 
+        Background="Transparent"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.DataContext>
+
+        <local:JuegoAdivinar></local:JuegoAdivinar>
+
+    </Window.DataContext>
+
+    <Border Background="{StaticResource color5}" CornerRadius="10" BorderBrush="{StaticResource color1}" BorderThickness="15">
+
+        <StackPanel Orientation="Vertical" Margin="30" Name="SPHOLA">
+
+            <TextBlock Text="Adivina el numero secreto" FontSize="45" Foreground="{StaticResource color2}"></TextBlock>
+
+            <!--// Numero Aleatorio //-->
+            <TextBox Style="{StaticResource textboxStyle}" Text="?"  FontSize="120" IsEnabled="False" Foreground="{StaticResource color6}"/>
+
+            <!--// Numero Ingresado por el Usuario //-->
+            <StackPanel Orientation="Horizontal" Margin="0,30,0,30">
+
+                <TextBlock Text="Ingresa un numero:" Foreground="{StaticResource color6}" FontSize="40"></TextBlock>
+                <TextBox Text="{Binding numero}" Style="{StaticResource textboxStyle}" FontSize="60" Height="50" Foreground="{StaticResource color2}"></TextBox>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+
+                <TextBlock Text="Pista:" Foreground="{StaticResource color6}"></TextBlock>
+                <TextBlock Text="{Binding Resultado}" Margin="20,0,0,0" Foreground="{StaticResource color4}"></TextBlock>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+
+                <TextBlock Text="Oportunidades:" Foreground="{StaticResource color6}"></TextBlock>
+                <TextBlock Text="{Binding Oportunidades}" Margin="15,0,0,0" FontSize="40" Foreground="{StaticResource color4}"></TextBlock>
+
+            </StackPanel>
+
+            <Button FontSize="50" Padding="0" FontWeight="Bold" FontFamily="Calibri" >
+
+                <Button.Style>
+
+                    <Style TargetType="Button">
+
+                        <Setter Property="Content" Value="Iniciar"></Setter>
+                        <Setter Property="Command" Value="{Binding IniciarCommand}"></Setter>
+
+                        <Setter Property="Width" Value="220"></Setter>
+                        <Setter Property="Height" Value="70"></Setter>
+                        <Setter Property="Background" Value="AliceBlue"></Setter>
+                        <Setter Property="Foreground" Value="{DynamicResource  color1}"></Setter>
+
+                        <Setter Property="Template">
+
+                            <Setter.Value>
+
+                                <ControlTemplate TargetType="{x:Type Button}">
+
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="15" BorderBrush="{DynamicResource color1}" BorderThickness="10">
+
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    </Border>
+
+                                </ControlTemplate>
+
+                            </Setter.Value>
+
+                        </Setter>
+
+                        <Style.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+
+                                <Setter Property="Width" Value="221"></Setter>
+                                <Setter Property="Height" Value="71"></Setter>
+                                <Setter Property="Background" Value="{DynamicResource  color3}"></Setter>
+                                <Setter Property="Foreground" Value="{DynamicResource  color1}" ></Setter>
+
+                            </Trigger>
+
+                            <DataTrigger Binding="{Binding JuegoIniciado}" Value="true">
+
+                                <Setter Property="Content" Value="Verificar"></Setter>
+                                <Setter Property="Command" Value="{Binding VerificarCommand}"></Setter>
+
+                            </DataTrigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Button.Style>
+
+            </Button>
+
+        </StackPanel>
+
+    </Border>
+</Window>

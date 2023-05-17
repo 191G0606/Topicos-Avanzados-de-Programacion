@@ -1,0 +1,68 @@
+﻿<Application x:Class="AdivinaElNumero.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AdivinaElNumero"
+             StartupUri="MainView.xaml">
+    <Application.Resources>
+
+        <!--// START: Estilo del textBox //-->
+        <Style TargetType="TextBox" x:Key="textboxStyle">
+
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="0,-15,0,0"></Setter>
+
+            <Setter Property="IsEnabled" Value="False"></Setter>
+            <Setter Property="MaxLength" Value="4"></Setter>
+
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="100"></Setter>
+
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontFamily" Value="Calibri"></Setter>
+
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+
+            <Style.Triggers>
+
+                <DataTrigger Binding="{Binding ElementName=SPHOLA, Path=DataContext.JuegoIniciado}" Value="true">
+
+                    <Setter Property="IsEnabled" Value="True"></Setter>
+
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding ElementName=SPHOLA, Path=DataContext.JuegoIniciado}" Value="false">
+
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                    <Setter Property="Text" Value="0"></Setter>
+
+                </DataTrigger>
+
+            </Style.Triggers>
+
+        </Style>
+        <!--// END: Estilo del textBox //-->
+
+        <!--// START: Estilo del textBlock //-->
+        <Style TargetType="TextBlock">
+
+            <Setter Property="FontSize" Value="25"></Setter>
+            <Setter Property="FontWeight" Value="UltraBlack"></Setter>
+            <Setter Property="FontFamily" Value="Calibri"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+
+        </Style>
+        <!--// END: Estilo del textBlock //-->
+
+        <SolidColorBrush x:Key="color1" Color="#F3DA4D"></SolidColorBrush>
+        <SolidColorBrush x:Key="color2" Color="#F3F3F5"></SolidColorBrush>
+        <SolidColorBrush x:Key="color3" Color="#F2A92F"></SolidColorBrush>
+        <SolidColorBrush x:Key="color4" Color="#F1DFF2"></SolidColorBrush>
+        <SolidColorBrush x:Key="color5" Color="#6DC7E9"></SolidColorBrush>
+        <SolidColorBrush x:Key="color6" Color="#305766"></SolidColorBrush>
+
+    </Application.Resources>
+</Application>
