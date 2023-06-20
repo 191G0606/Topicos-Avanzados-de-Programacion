@@ -1,0 +1,186 @@
+﻿<Window x:Class="DatosLibros.Views.BibliotecaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatosLibros.Views"
+        xmlns:viewmodels="clr-namespace:DatosLibros.ViewModels"
+        mc:Ignorable="d"
+        Title="BibliotecaView" 
+        Name="home" 
+        Height="700" 
+        Width="930" 
+        Background="Transparent"
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.DataContext>
+
+        <viewmodels:LibroViewModel></viewmodels:LibroViewModel>
+
+    </Window.DataContext>
+
+    <Border Background="AliceBlue" CornerRadius="5" Padding="10">
+
+        <DockPanel Margin="0">
+
+            <!--// START: Salir | Maximizar | Minimizar //-->
+            <Grid DockPanel.Dock="Top" Height="20">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Name="btnMinimize" Click="btnMinimize_Click" Style="{StaticResource mmcStyle}">
+
+                    <Path Data="{StaticResource minimize}" Style="{StaticResource MenuIconStyleMMC}" StrokeThickness="0"></Path>
+
+                </Button>
+
+                <Button Grid.Column="3" Name="btnClose" Click="btnClose_Click" Style="{StaticResource mmcStyle}">
+
+                    <Path Data="{StaticResource close}" Style="{StaticResource MenuIconStyleMMC}" StrokeThickness="0"></Path>
+
+                </Button>
+
+            </Grid>
+
+            <DockPanel Margin="20,0,20,20">
+
+                <DockPanel Margin="0" 
+                           DockPanel.Dock="Left">
+
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+
+                        <Button Command="{Binding CambiarVistaCommand}" 
+                                CommandParameter="agregar">Agregar</Button>
+
+                        <Button Command="{Binding CambiarVistaCommand}" 
+                                CommandParameter="editar">Editar</Button>
+
+                        <Button Command="{Binding CambiarVistaCommand}" 
+                                CommandParameter="eliminar">Eliminar</Button>
+                        
+                    </StackPanel>
+                    
+                    <ListBox  ItemsSource="{Binding ListaLibros}" 
+                              SelectedItem="{Binding Libro}" 
+                              BorderThickness="1.5"
+                              Margin="0,20,0,20"
+                              ScrollViewer.CanContentScroll="True" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                        <ListBox.ItemContainerStyle>
+
+                            <Style TargetType="ListBoxItem">
+
+                                <Setter Property="Margin" Value="5,10,5,10"/>
+                                <Setter Property="Width" Value="200"/>
+
+                                <Style.Resources>
+
+                                    <Style TargetType="Border">
+
+                                        <Setter Property="CornerRadius" Value="5"/>
+
+                                    </Style>
+
+                                </Style.Resources>
+
+                            </Style>
+
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemsPanel>
+
+                            <ItemsPanelTemplate>
+
+                                <UniformGrid Columns="1" Rows="10" Width="200"></UniformGrid>
+
+                            </ItemsPanelTemplate>
+
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <StackPanel Width="200" 
+                                            HorizontalAlignment="Center" 
+                                            Margin="5" 
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="{Binding Titulo}"
+                                               Style="{StaticResource tituloStyle}"
+                                               TextAlignment="Center" 
+                                               FontWeight="Normal" 
+                                               TextWrapping="Wrap" 
+                                               Margin="0"/>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                </DockPanel>
+
+                <ContentControl Width="640" Height="670">
+
+                    <ContentControl.Resources>
+
+                        <local:UCAgregarView x:Key="agregar"></local:UCAgregarView>
+                        <local:UCEditarView x:Key="editar"></local:UCEditarView>
+                        <local:UCEliminarView x:Key="eliminar"></local:UCEliminarView>
+                        <local:UCVerDatosLibroView x:Key="ver" Loaded="UCVerDatosLibroView_Loaded"></local:UCVerDatosLibroView>
+                        <!-- muestra datos libro-->
+
+                    </ContentControl.Resources>
+
+                    <ContentControl.Style>
+
+                        <Style TargetType="ContentControl">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding Vista}" Value="ver">
+                                    <Setter Property="Content" Value="{StaticResource ver}"></Setter>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Vista}" Value="agregar">
+                                    <Setter Property="Content" Value="{StaticResource agregar}"></Setter>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Vista}" Value="editar">
+                                    <Setter Property="Content" Value="{StaticResource editar}"></Setter>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Vista}" Value="eliminar">
+                                    <Setter Property="Content" Value="{StaticResource eliminar}"></Setter>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+
+                    </ContentControl.Style>
+
+                </ContentControl>
+
+            </DockPanel>
+
+        </DockPanel>
+
+    </Border>
+
+</Window>

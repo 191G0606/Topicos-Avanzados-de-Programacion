@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datos Personales", "Datos P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterMind-CombinacionNumerica", "MasterMind-CombinacionNumerica\MasterMind-CombinacionNumerica.csproj", "{CDAD80A7-ACE6-47AD-B0E3-E6D2B878E0CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdivinaElNumero", "AdivinaElNumero\AdivinaElNumero.csproj", "{DEECC015-B58F-47BC-ADFB-65AC221ABEFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdivinaElNumero", "AdivinaElNumero\AdivinaElNumero.csproj", "{DEECC015-B58F-47BC-ADFB-65AC221ABEFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ultimos Ejercicios", "Ultimos Ejercicios", "{7EAAB65A-1BFE-4317-AFB1-116812C449B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatosLibros", "DatosLibros\DatosLibros.csproj", "{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{DEECC015-B58F-47BC-ADFB-65AC221ABEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEECC015-B58F-47BC-ADFB-65AC221ABEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEECC015-B58F-47BC-ADFB-65AC221ABEFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB83FC11-CC28-40B9-ACDE-F78A3898D63D} = {7EAAB65A-1BFE-4317-AFB1-116812C449B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9CB59998-41A2-4EBD-99D3-29738D6ADDFD}

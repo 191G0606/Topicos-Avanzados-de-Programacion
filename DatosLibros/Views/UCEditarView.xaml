@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="DatosLibros.Views.UCEditarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DatosLibros.Views"
+             mc:Ignorable="d" 
+                  d:DesignWidth="640" d:DesignHeight="670">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".45*"></RowDefinition>
+            <RowDefinition Height=".55*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Width="auto">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".50*"></ColumnDefinition>
+                <ColumnDefinition Width=".05*"></ColumnDefinition>
+                <ColumnDefinition Width=".50*"></ColumnDefinition>
+                <ColumnDefinition Width=".05*"></ColumnDefinition>
+                <ColumnDefinition Width=".20*"></ColumnDefinition>
+                <ColumnDefinition Width=".05*"></ColumnDefinition>
+                <ColumnDefinition Width=".30*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".20*"></RowDefinition>
+                <RowDefinition Height=".20*"></RowDefinition>
+                <RowDefinition Height=".20*"></RowDefinition>
+                <RowDefinition Height=".20*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Style="{StaticResource tituloStyle}">Titulo</TextBlock>
+                <TextBox Text="{Binding Libro.Titulo}" 
+                         Style="{StaticResource TextBoxStyle}" 
+                         Tag="Escriba el titulo del libro"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Style="{StaticResource tituloStyle}">Titulo Original</TextBlock>
+                <TextBox Text="{Binding Libro.TituloOriginal}" 
+                         Style="{StaticResource TextBoxStyle}" 
+                         Tag="Escriba el titulo original del libro (Opcional)"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                <TextBlock Style="{StaticResource tituloStyle}">Autor</TextBlock>
+                <TextBox Text="{Binding Libro.Autor}" 
+                         Style="{StaticResource TextBoxStyle}" 
+                         Tag="Escriba el autor del libro"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
+                <TextBlock Style="{StaticResource tituloStyle}">Genero</TextBlock>
+                <TextBox Text="{Binding Libro.Genero}" 
+                         Style="{StaticResource TextBoxStyle}" 
+                         Tag="Escriba el genero del libro"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Grid.ColumnSpan="5">
+                <TextBlock Style="{StaticResource tituloStyle}">Ruta de imagen</TextBlock>
+                <TextBox Text="{Binding Libro.RutaImagen}" 
+                         Style="{StaticResource TextBoxStyle}" 
+                         Tag="Escriba la url o elija la imagen deseada"/>
+            </StackPanel>
+
+            <Border Grid.Column="4"  
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="3"
+                    Width="170" Height="180"
+                    Margin="0,30,0,0"
+                    BorderBrush="black" 
+                    BorderThickness="1.5" 
+                    CornerRadius="10">
+
+                <Image Source="{Binding Libro.RutaImagen}" Stretch="UniformToFill"/>
+
+            </Border>
+
+            <Button Grid.Column="6"
+                    Grid.Row="3"
+                    Cursor="Hand" 
+                    Content="Abrir imagen" 
+                    Command="{Binding BuscarImagenCommand}"
+                    Height="40"
+                    FontSize="12"
+                    Width="115"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center">
+            </Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".80*"></RowDefinition>
+                <RowDefinition Height=".20*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0">
+
+                <TextBlock Style="{StaticResource tituloStyle}">Reseña</TextBlock>
+                <TextBox DockPanel.Dock="Bottom" 
+                         Text="{Binding Libro.Reseña}" 
+                         MaxLines="20" Height="150" 
+                         Style="{StaticResource TextBoxStyle}"
+                         HorizontalContentAlignment="Left" 
+                         VerticalContentAlignment="Top"
+                         VerticalScrollBarVisibility="Visible"
+                         TextWrapping="Wrap">
+                </TextBox>
+
+            </StackPanel>
+
+            <DockPanel Grid.Row="1">
+
+                <StackPanel DockPanel.Dock="Right"
+                            Orientation="Horizontal">
+
+                    <Button Command="{Binding CancelarCommand}" 
+                            Width="150" 
+                            Height="40"
+                            Margin="0,0,10,0">Cancelar</Button>
+
+                    <Button Command="{Binding EditarCommand}" 
+                            Width="150" 
+                            Height="40">Editar</Button>
+
+                </StackPanel>
+
+                <Border></Border>
+
+            </DockPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
