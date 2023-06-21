@@ -12,32 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace DatosLibros.Views
+namespace Pinacoteca.Views
 {
     /// <summary>
-    /// Lógica de interacción para BibliotecaView.xaml
+    /// Lógica de interacción para VentanaPrincipalView.xaml
     /// </summary>
-    public partial class BibliotecaView : Window
+    public partial class VentanaPrincipalView : Window
     {
-        
-        public BibliotecaView()
+        public VentanaPrincipalView()
         {
-
-        }
-
-        private void UCVerDatosLibroView_Loaded(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
+            InitializeComponent();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

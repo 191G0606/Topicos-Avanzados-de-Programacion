@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Pinacoteca.Views.UCVerPinacotecasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pinacoteca.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1200">
+
+    <StackPanel Margin="20">
+
+        <TextBlock Style="{StaticResource tituloStyle}" FontSize="30" Margin="40 0">COLECCIÓN (Principales pinacotecas españolas)</TextBlock>
+        <Border BorderBrush="Black" Background="#F8CD64" BorderThickness="1.5" CornerRadius="8" Margin="40" >
+
+            <ListBox  ItemsSource="{Binding ListaPinacotecas}" SelectedItem="{Binding Pinacoteca}"
+                  x:Name="lista"
+                  Background="Transparent"
+                  HorizontalAlignment="Center"
+                  Padding="20"
+                  BorderThickness="0" Height="400"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                <ListBox.ItemContainerStyle>
+
+                    <Style TargetType="ListBoxItem">
+
+                        <Setter Property="Margin" Value="0,7,0,7"/>
+                        <Setter Property="Width" Value="auto"/>
+
+                        <Style.Resources>
+
+                            <Style TargetType="Border">
+
+                                <Setter Property="CornerRadius" Value="5"/>
+
+                            </Style>
+
+                        </Style.Resources>
+
+                    </Style>
+
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+
+                        <WrapPanel Orientation="Vertical" Width="auto" />
+
+                    </ItemsPanelTemplate>
+
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border Background="White" CornerRadius="8" BorderBrush="Black" BorderThickness="1.5" Padding="20 10 20 10" Margin="0 10">
+
+                            <UniformGrid Columns="4"  Width="850" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource tituloStyle}">NOMBRE</TextBlock>
+                                    <TextBlock Style="{StaticResource etiquetasStyle}" Text="{Binding Nombre}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource tituloStyle}">CIUDAD</TextBlock>
+                                    <TextBlock Style="{StaticResource etiquetasStyle}" Text="{Binding Ciudad}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource tituloStyle}">DIRECCIÓN</TextBlock>
+                                    <TextBlock Style="{StaticResource etiquetasStyle}" Text="{Binding Direccion}"  TextAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource tituloStyle}">METROS CUADRADOS</TextBlock>
+                                    <TextBlock Style="{StaticResource etiquetasStyle}" Text="{Binding MetrosCuadrados}"  TextAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                            </UniformGrid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </Border>
+
+        <DockPanel>
+
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"  Margin="30">
+
+                <Button Command="{Binding CambiarVistaCommand}" CommandParameter="agregar">AGREGAR</Button>
+                <Button Command="{Binding CambiarVistaCommand}" CommandParameter="editar">EDITAR</Button>
+                <Button Command="{Binding CambiarVistaCommand}" CommandParameter="eliminar">ELIMINAR</Button>
+
+            </StackPanel>
+
+            <Border></Border>
+            
+        </DockPanel>
+
+
+    </StackPanel>
+
+</UserControl>

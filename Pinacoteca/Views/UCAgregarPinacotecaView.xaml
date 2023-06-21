@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Pinacoteca.Views.UCAgregarPinacotecaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pinacoteca.Views"
+             mc:Ignorable="d" 
+           d:DesignHeight="700" d:DesignWidth="1200">
+    
+    <StackPanel Margin="20">
+
+        <TextBlock Style="{StaticResource tituloStyle}">NOMBRE</TextBlock>
+        <TextBox Style="{StaticResource TextBoxStyle}" Tag="Escriba el nombre" Text="{Binding Pinacoteca.Nombre}"></TextBox>
+
+        <TextBlock Style="{StaticResource tituloStyle}">CIUDAD</TextBlock>
+        <TextBox Style="{StaticResource TextBoxStyle}" Tag="Escriba la ciudad" Text="{Binding Pinacoteca.Ciudad}"></TextBox>
+
+        <TextBlock Style="{StaticResource tituloStyle }">DIRECCIÓN</TextBlock>
+        <TextBox Style="{StaticResource TextBoxStyle}" Tag="Escriba la dirección"  Text="{Binding Pinacoteca.Direccion}"></TextBox>
+
+        <TextBlock Style="{StaticResource tituloStyle}">METROS CUADRADOS</TextBlock>
+        <TextBox Style="{StaticResource TextBoxStyle}" Tag="Escriba los metros cuadrados que ocupa" Text="{Binding Pinacoteca.MetrosCuadrados}"></TextBox>
+
+
+        <DockPanel>
+
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal"  Margin="30">
+
+                <Button Command="{Binding AgregarCommand}">AGREGAR</Button>
+                <Button Command="{Binding CancelarCommand}">CANCELAR</Button>
+
+            </StackPanel>
+
+            <TextBlock Text="{Binding Error}" Style="{StaticResource tituloStyle}" FontSize="16" Foreground="Red"></TextBlock>
+            
+            <Border></Border>
+
+        </DockPanel>
+
+
+    </StackPanel>
+    
+</UserControl>

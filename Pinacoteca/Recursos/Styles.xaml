@@ -49,6 +49,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="MenuIconStyleMMC" TargetType="Path">
 
         <Setter Property="Fill" Value="Black"></Setter>
@@ -86,15 +87,13 @@
 
     <Style TargetType="TextBlock" x:Key="tituloStyle">
         
-        <Setter Property="FontFamily" Value="Arial Rounded MT"/>
+        <Setter Property="FontFamily" Value="Poppin"/>
         <Setter Property="Foreground" Value="DarkSlateGray"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="16"></Setter>
         <Setter Property="FontWeight" Value="DemiBold"></Setter>
-        <Setter Property="Margin" Value="0 10 0 2"></Setter>
-        
-    </Style>
 
+    </Style>
 
     <Style TargetType="TextBlock" x:Key="etiquetasStyle">
 
@@ -115,11 +114,12 @@
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Padding" Value="5.2 3"/>
+        <Setter Property="Margin" Value="0 5 0 30"></Setter>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontFamily" Value="Poppin"/>
         <Setter Property="Cursor" Value="IBeam"/>
         <Setter Property="Foreground" Value="DimGray"></Setter>
-        <Setter Property="Height" Value="40"/>
+        <Setter Property="Height" Value="50"/>
         <Setter Property="AllowDrop" Value="True"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
@@ -200,21 +200,23 @@
 
     <Style TargetType="Button">
 
-        <Setter Property="FontSize" Value="14"></Setter>
-        <Setter Property="Background" Value="BlueViolet"/>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Background" Value="#AEB884"/>
         <Setter Property="Foreground" Value="WhiteSmoke"></Setter>
-        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontFamily" Value="Poppin"></Setter>
+        <Setter Property="Width" Value="150"></Setter>
+        <Setter Property="Height" Value="60"></Setter>
         <Setter Property="Template">
 
             <Setter.Value>
 
                 <ControlTemplate TargetType="Button">
 
-                    <Border CornerRadius="20"
+                    <Border CornerRadius="10"
                             BorderThickness="3"
-                            BorderBrush="#ADA6F5"
+                            BorderBrush="DarkSlateGray"
                             Padding="10,10,10,10"
-                            Margin="0,0,5,0"
+                            Margin="0,0,10,0"
                             Background="{TemplateBinding Background}">
 
                         <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -231,7 +233,7 @@
 
             <Trigger Property="IsMouseOver" Value="True">
 
-                <Setter Property="Background" Value="#ADA6F5"/>
+                <Setter Property="Background" Value="#BACDD1"/>
 
             </Trigger>
 

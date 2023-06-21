@@ -5,94 +5,184 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DatosLibros.Views"
              mc:Ignorable="d" 
-             d:DesignWidth="640" d:DesignHeight="670">
+             d:DesignWidth="930" d:DesignHeight="700">
 
-    <Grid Margin="20">
+    <DockPanel Margin="20">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".45*"></RowDefinition>
-            <RowDefinition Height=".55*"></RowDefinition>
-        </Grid.RowDefinitions>
+        <DockPanel Margin="0" DockPanel.Dock="Left">
 
-        <Grid Grid.Row="0" Width="auto">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width=".10*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width=".10*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width=".10*"></ColumnDefinition>
-                <ColumnDefinition Width=".30*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+                <Button Command="{Binding CambiarVistaCommand}" CommandParameter="agregar">Agregar</Button>
 
+                <Button Command="{Binding CambiarVistaCommand}" CommandParameter="editar">Editar</Button>
+
+                <Button Command="{Binding CambiarVistaCommand}" CommandParameter="eliminar">Eliminar</Button>
+
+            </StackPanel>
+
+            <ListBox  ItemsSource="{Binding ListaLibros}" SelectedItem="{Binding Libro}"
+                      Background="Transparent"
+                  HorizontalAlignment="Center"
+                  Padding="20"
+                  BorderThickness="0"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                <ListBox.ItemContainerStyle>
+
+                    <Style TargetType="ListBoxItem">
+
+                        <Setter Property="Margin" Value="0,7,0,7"/>
+                        <Setter Property="Width" Value="auto"/>
+
+                        <Style.Resources>
+
+                            <Style TargetType="Border">
+
+                                <Setter Property="CornerRadius" Value="5"/>
+
+                            </Style>
+
+                        </Style.Resources>
+
+                    </Style>
+
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+
+                        <WrapPanel Orientation="Vertical" Width="auto" />
+
+                    </ItemsPanelTemplate>
+
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border Background="White" CornerRadius="8" BorderBrush="Black" BorderThickness="1.5" Padding="20 10 20 10" Margin="0 10">
+
+                            <UniformGrid Columns="1"  Width="400" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource tituloStyle}">LIBRO...</TextBlock>
+                                    <TextBlock Style="{StaticResource etiquetasStyle}" Text="{Binding Titulo}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                            </UniformGrid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </DockPanel>
+
+        <Grid Margin="20">
+     
             <Grid.RowDefinitions>
-                <RowDefinition Height=".20*"></RowDefinition>
-                <RowDefinition Height=".20*"></RowDefinition>
-                <RowDefinition Height=".20*"></RowDefinition>
-                
+                <RowDefinition Height=".45*"/>
+                <RowDefinition Height=".55*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0">
-                <TextBlock Style="{StaticResource tituloStyle}">Titulo</TextBlock>
-                <TextBox Text="{Binding Libro.Titulo}" 
-                         Style="{StaticResource TextBoxStyle}"/>
-            </StackPanel>
+            <Grid Grid.Row="0" Width="auto">
 
-            <StackPanel Grid.Column="2">
-                <TextBlock Style="{StaticResource tituloStyle}">Titulo Original</TextBlock>
-                <TextBox Text="{Binding Libro.TituloOriginal}" 
-                         Style="{StaticResource TextBoxStyle}"/>
-            </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".10*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".10*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".10*"/>
+                    <ColumnDefinition Width=".30*"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
-                <TextBlock Style="{StaticResource tituloStyle}">Autor</TextBlock>
-                <TextBox Text="{Binding Libro.Autor}" 
-                         Style="{StaticResource TextBoxStyle}" />
-            </StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".20*"/>
+                    <RowDefinition Height=".20*"/>
+                    <RowDefinition Height=".20*"/>
 
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
-                <TextBlock Style="{StaticResource tituloStyle}">Genero</TextBlock>
-                <TextBox Text="{Binding Libro.Genero}" 
-                         Style="{StaticResource TextBoxStyle}" ></TextBox>
-            </StackPanel>
+                </Grid.RowDefinitions>
 
-            <Border Grid.Column="4"  
-                    Grid.ColumnSpan="3"
-                    Grid.RowSpan="3"
-                    Width="auto" Height="auto"
-                    Margin="0,30,0,25"
-                    BorderBrush="black" 
-                    BorderThickness="1.5" 
-                    CornerRadius="10">
+                <StackPanel Grid.Column="0">
 
-                <Image Source="{Binding Libro.RutaImagen}" Stretch="UniformToFill"/>
+                    <TextBlock Style="{StaticResource tituloStyle}">Titulo</TextBlock>
+                    <TextBox Text="{Binding Libro.Titulo}" 
+                             IsEnabled="False"
+                             Style="{StaticResource TextBoxStyle}"/>
 
-            </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+
+                    <TextBlock Style="{StaticResource tituloStyle}">Titulo Original</TextBlock>
+                    <TextBox Text="{Binding Libro.TituloOriginal}" 
+                             IsEnabled="False"
+                             Style="{StaticResource TextBoxStyle}"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+
+                    <TextBlock Style="{StaticResource tituloStyle}">Autor</TextBlock>
+                    <TextBox Text="{Binding Libro.Autor}" 
+                             IsEnabled="False"
+                             Style="{StaticResource TextBoxStyle}" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
+
+                    <TextBlock Style="{StaticResource tituloStyle}">Genero</TextBlock>
+                    <TextBox Text="{Binding Libro.Genero}" 
+                             IsEnabled="False"
+                             Style="{StaticResource TextBoxStyle}" ></TextBox>
+
+                </StackPanel>
+
+                <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="3"
+                        Width="auto" Height="auto"
+                        Margin="0,30,0,23.5"
+                        CornerRadius="4"
+                        BorderThickness="1.5"
+                        BorderBrush="Black">
+
+                    <Image Source="{Binding Libro.RutaImagen}" Stretch="UniformToFill"/>
+
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <StackPanel Grid.Row="0" Margin="0">
+
+                    <TextBlock Style="{StaticResource tituloStyle}">Reseña</TextBlock>
+                    <TextBox DockPanel.Dock="Bottom"
+                             IsEnabled="True"
+                             Text="{Binding Libro.Reseña}" 
+                             MaxLines="100" Height="300" 
+                             Style="{StaticResource TextBoxStyle}"
+                             HorizontalContentAlignment="Left" 
+                             VerticalContentAlignment="Top"
+                             VerticalScrollBarVisibility="Visible"
+                             TextWrapping="Wrap">
+                    </TextBox>
+
+                </StackPanel>
+
+            </Grid>
 
         </Grid>
 
-        <Grid Grid.Row="1">
-
-           
-            <StackPanel Grid.Row="0" Margin="0">
-
-                <TextBlock Style="{StaticResource tituloStyle}">Reseña</TextBlock>
-                <TextBox DockPanel.Dock="Bottom" 
-                         Text="{Binding Libro.Reseña}" 
-                         MaxLines="100" Height="300" 
-                         Style="{StaticResource TextBoxStyle}"
-                         HorizontalContentAlignment="Left" 
-                         VerticalContentAlignment="Top"
-                         VerticalScrollBarVisibility="Visible"
-                         TextWrapping="Wrap">
-                </TextBox>
-                
-
-            </StackPanel>
-
-        </Grid>
-
-    </Grid>
+    </DockPanel>
 
 </UserControl>

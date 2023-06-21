@@ -20,17 +20,15 @@ namespace DatosLibros.ViewModels
 {
     public class LibroViewModel : INotifyPropertyChanged
     {
-        //campos
-        int indice;
-        public string Vista { get; set; } = "ver";
-
-        //EVENTOS
         public event PropertyChangedEventHandler? PropertyChanged;
+        public ObservableCollection<LibroModel> ListaLibros { get; set; } = new ObservableCollection<LibroModel>();
+        public LibroModel Libro { get; set; } = new LibroModel();
+
+        int indice;
 
         //propiedades
         public string Error { get; set; } = "";
-        public ObservableCollection<Libro> ListaLibros { get; set; } = new ObservableCollection<Libro>();
-        public Libro Libro { get; set; } = new Libro();
+        public string Vista { get; set; } = "ver";
 
         //COMANDOS
         public ICommand? AgregarCommand { get; set; }
@@ -74,8 +72,7 @@ namespace DatosLibros.ViewModels
             {
                 ListaLibros.Add(Libro);
                 Guardar();
-
-                //Vista = "ver";
+                
                 CambiarVista("ver");
             }
 
@@ -88,43 +85,34 @@ namespace DatosLibros.ViewModels
                 ListaLibros.Remove(Libro);
                 Guardar();
 
-                // Vista = "ver";
                 CambiarVista("ver");
             }
         }
-        public void Editar()
+
+        public void Modificar()
         {
             if (ListaLibros != null)
             {
-                ListaLibros[indice] = Libro; //copiacontacto o contacto 
+                ListaLibros[indice] = Libro;
 
                 Guardar();
                 CambiarVista("ver");
             }
         }
-        public void BuscarImagen()
+
+        public void Cancelar()
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Archivos de imágen (.jpg)|*.jpg|All Files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.Multiselect = false;
-            
-            bool? checarOK = openFileDialog1.ShowDialog();
-
-            if (checarOK == true)
-            {
-                Libro.RutaImagen = openFileDialog1.FileName;
-            }
-
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+            Vista = "ver";
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Vista)));
         }
+
         public void CambiarVista(string vistaCambiar)
         {
             Vista = vistaCambiar;
 
             if (vistaCambiar == "agregar")
             {
-                Libro = new Libro();
+                Libro = new LibroModel();
             }
 
             if (vistaCambiar == "editar")
@@ -134,7 +122,7 @@ namespace DatosLibros.ViewModels
                     indice = ListaLibros.IndexOf(Libro);
                 }
 
-                Libro copiaLibro = new Libro()
+                LibroModel copiaLibro = new LibroModel()
                 {
                     Titulo = Libro.Titulo,
                     Autor = Libro.Autor,
@@ -149,45 +137,61 @@ namespace DatosLibros.ViewModels
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Vista"));
         }
-        public void Cancelar()
+
+        public void BuscarImagen()
         {
-            Vista = "ver";
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Vista)));
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Archivos de imágen (.jpg)|*.jpg|All Files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Multiselect = false;
+
+            bool? checarOK = openFileDialog1.ShowDialog();
+
+            if (checarOK == true)
+            {
+                Libro.RutaImagen = openFileDialog1.FileName;
+            }
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
-        public void Guardar()
-        {
-            var json = JsonConvert.SerializeObject(ListaLibros);
-            File.WriteAllText("Libros.json", json);
-        }
+
+        //SERIALIZAR Y DESERIALIZAR
         public void Cargar()
         {
             if (File.Exists("Libros.json"))
             {
                 var json = File.ReadAllText("Libros.json");
-                var datos = JsonConvert.DeserializeObject<ObservableCollection<Libro>>(json);
+                var datos = JsonConvert.DeserializeObject<ObservableCollection<LibroModel>>(json);
 
                 if (datos != null)
                 {
-                    ListaLibros = (ObservableCollection<Libro>)datos;
+                    ListaLibros = (ObservableCollection<LibroModel>)datos;
                 }
                 else
                 {
-                    ListaLibros = new ObservableCollection<Libro>();
+                    ListaLibros = new ObservableCollection<LibroModel>();
                 }
             }
         }
 
+        public void Guardar()
+        {
+            var json = JsonConvert.SerializeObject(ListaLibros);
+            File.WriteAllText("Libros.json", json);
+        }
+
+        //CONSTRUCTOR
         public LibroViewModel()
         {
             Cargar();
 
             //propiedades apuntan a los metodos, se instala mvvm light para que aparezca relay te lo da en advertencias
             AgregarCommand = new RelayCommand(Agregar);
-            EditarCommand = new RelayCommand(Editar);
+            EditarCommand = new RelayCommand(Modificar);
             EliminarCommand = new RelayCommand(Eliminar);
             CancelarCommand = new RelayCommand(Cancelar);
-            BuscarImagenCommand = new RelayCommand(BuscarImagen);
             CambiarVistaCommand = new RelayCommand<string>(CambiarVista);
+            BuscarImagenCommand = new RelayCommand(BuscarImagen);
         }
     }
 }
