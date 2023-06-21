@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="AgendaMVVM.Views.UCVerContactosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AgendaMVVM.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <DockPanel>
+
+        <!-- unidad 2-->
+        <Ribbon Title="Lista de contactos" DockPanel.Dock="Top">
+
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"></RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+            <RibbonTab>
+                <RibbonGroup>
+                    <RibbonButton Command="{Binding CambiarVistaCommand}" CommandParameter="agregar" Label="Agregar" LargeImageSource="../Assets/add.png"></RibbonButton>
+                    <RibbonButton Command="{Binding CambiarVistaCommand}" CommandParameter="editar" Label="Editar" LargeImageSource="../Assets/edit.png"></RibbonButton>
+                    <RibbonButton Command="{Binding CambiarVistaCommand}" CommandParameter="eliminar" Label="Eliminar" LargeImageSource="../Assets/delete.png"></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
+
+        </Ribbon>
+
+        <DataGrid ItemsSource="{Binding Contactos}" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding Contacto}">
+           
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre" Width=".3*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Direccion}" Header="Direccion" Width=".3*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Telefono}" Header="Telefono" Width=".2*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Email}" Header="Email" Width=".2*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding FechaNacimiento, StringFormat=d}" Header="Fecha Nacimiento" Width=".2*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        
+        </DataGrid>
+
+    </DockPanel>
+    
+</UserControl>

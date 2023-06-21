@@ -53,6 +53,11 @@ namespace Pinacoteca.ViewModels
             {
                 Error += "No se ingresarón los metros cuadrados.\n";
             }
+            // Verifica si el nombre ya existe en el ObservableCollection
+            if (ListaPinacotecas.Any(pinacoteca => pinacoteca.Nombre == Pinacoteca.Nombre))
+            {
+                Error += "El nombre ya existe en la lista.\n";
+            }
 
             if (Error == "" && ListaPinacotecas != null)
             {

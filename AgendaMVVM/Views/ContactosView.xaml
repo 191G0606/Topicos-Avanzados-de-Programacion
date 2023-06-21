@@ -1,0 +1,58 @@
+﻿<RibbonWindow x:Class="AgendaMVVM.Views.ContactosView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AgendaMVVM.Views"
+        xmlns:viewmodels="clr-namespace:AgendaMVVM.ViewModels"
+        mc:Ignorable="d"
+        Title="ContactosView" Height="450" Width="800">
+
+    <RibbonWindow.DataContext>
+
+        <viewmodels:ContactoViewModel></viewmodels:ContactoViewModel>
+
+    </RibbonWindow.DataContext>
+
+    <ContentControl>
+
+        <ContentControl.Resources>
+
+            <local:UCAgregarView x:Key="agregar"></local:UCAgregarView>
+            <local:UCEditar x:Key="editar"></local:UCEditar>
+            <local:UCEliminarView x:Key="eliminar"></local:UCEliminarView>
+            <local:UCVerContactosView x:Key="ver"></local:UCVerContactosView>
+
+        </ContentControl.Resources>
+
+        <ContentControl.Style>
+
+            <Style TargetType="ContentControl">
+
+                <Style.Triggers>
+
+                    <DataTrigger Binding="{Binding Vista}" Value="ver">
+                        <Setter Property="Content" Value="{StaticResource ver}"></Setter>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Vista}" Value="agregar">
+                        <Setter Property="Content" Value="{StaticResource agregar}"></Setter>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Vista}" Value="editar">
+                        <Setter Property="Content" Value="{StaticResource editar}"></Setter>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Vista}" Value="eliminar">
+                        <Setter Property="Content" Value="{StaticResource eliminar}"></Setter>
+                    </DataTrigger>
+
+                </Style.Triggers>
+
+            </Style>
+
+        </ContentControl.Style>
+
+    </ContentControl>
+
+</RibbonWindow>

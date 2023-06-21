@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdivinaElNumero", "AdivinaE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ultimos Ejercicios", "Ultimos Ejercicios", "{7EAAB65A-1BFE-4317-AFB1-116812C449B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatosLibros", "DatosLibros\DatosLibros.csproj", "{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatosLibros", "DatosLibros\DatosLibros.csproj", "{BB83FC11-CC28-40B9-ACDE-F78A3898D63D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinacoteca", "Pinacoteca\Pinacoteca.csproj", "{249457A3-F363-4F06-8595-C34D13F07462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pinacoteca", "Pinacoteca\Pinacoteca.csproj", "{249457A3-F363-4F06-8595-C34D13F07462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaMVVM", "AgendaMVVM\AgendaMVVM.csproj", "{A3A9494A-E238-421A-95E8-9564CD8E1FD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{249457A3-F363-4F06-8595-C34D13F07462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{249457A3-F363-4F06-8595-C34D13F07462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{249457A3-F363-4F06-8595-C34D13F07462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A9494A-E238-421A-95E8-9564CD8E1FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A9494A-E238-421A-95E8-9564CD8E1FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A9494A-E238-421A-95E8-9564CD8E1FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A9494A-E238-421A-95E8-9564CD8E1FD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
